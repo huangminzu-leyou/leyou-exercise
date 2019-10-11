@@ -2,6 +2,7 @@
 /.project
 .idea
 *.iml
+*.md
 out
 gen
 target/

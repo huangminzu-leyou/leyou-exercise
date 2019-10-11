@@ -12,3 +12,6 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1 #默认注册地址
+  server:
+    enable-self-preservation: true # 开发时关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 1000 # 扫描失效服务的间隔时间（缺省为60*1000ms）

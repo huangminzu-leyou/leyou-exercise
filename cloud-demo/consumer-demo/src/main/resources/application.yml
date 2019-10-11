@@ -1,10 +1,18 @@
 server:
-  port: 8082
+  port: 9001
 spring:
   application:
     name: consumer-service
 eureka:
   client:
-    service-url: # EurekaServer�ĵ�ַ���������Լ��ĵ�ַ������Ǽ�Ⱥ����Ҫ��������Server�ĵ�ַ��
-      defaultZone: http://127.0.0.1:10086/eureka
-    registry-fetch-interval-seconds: 30 #��ȡ���ʱ�� Ĭ��30
+    service-url: # EurekaServer注册地址
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    registry-fetch-interval-seconds: 5 #获取服务间隔时间 默认30
+    fetch-registry: true # 是否拉取其它服务的信息，默认是true
+    ## 当服务消费者启动是，会检测`eureka.client.fetch-registry=true`参数的值，如果为true，则会从Eureka Server服务的列表只读备份，然后缓存在本地。
+    ## 并且`每隔30秒`会重新获取并更新数据。我们可以通过下面的参数来修改
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+user-service:
+  ribbon:
+    NFloadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
