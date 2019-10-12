@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: consumer-service
+#eureka配置
 eureka:
   client:
     service-url: # EurekaServer注册地址
@@ -13,6 +14,8 @@ eureka:
     ## 并且`每隔30秒`会重新获取并更新数据。我们可以通过下面的参数来修改
   instance:
     instance-id: ${spring.application.name}:${server.port}
+
+#路由规则
 user-service:
   ribbon:
     NFloadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
